@@ -1,0 +1,35 @@
+A CNN is trained and learns more and more complex features
+
+Max-pooling layers discard detailed spatial information (irrelevant to classification)
+
+The featuremaps (convolutional layers) become more and more interested in the content of the image rather than any detail about texture and colour of pixels
+
+Later layers are called content representation of image
+
+Style = texture, colour, curvature. 
+
+content image = image to get altered
+
+style image = style which we want copied
+
+The CNN will merge the content image and the style image to create a new image
+
+using the steps from:
+https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Gatys_Image_Style_Transfer_CVPR_2016_paper.pdf
+
+Uses VGG-19 architecture:
+    input: 224 x 224 x3 (RGB)
+    convolutional layers - 5 deep
+    3 fully connected layers
+    
+    content is taken from 4th convol stack (conv_4_2)
+    
+    Content loss = to measure the difference between content and target image representations is optimized
+    
+    Style loss = how close target image is to the style image
+                mean squared distance between style and targe image gram matrices
+
+
+    Not using VGG to train a specific output - using it as a feature extraction and using backpropagation to minimize loss function between target and target image 
+    
+    usually use ratio of alpha (content)/beta (style). try different ratios (1/10, 1/100)
